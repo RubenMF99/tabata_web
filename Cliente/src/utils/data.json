@@ -1,0 +1,20 @@
+{
+  "homeInfo": [
+    {"nombre": "Brazos", "id": 1, "descripcion": "Lorem Ipsum Dolor Sit Amet.","url":"https://i.pinimg.com/originals/7a/11/b9/7a11b9f739c130eed437d1a237cc3b7d.jpg"},
+    {"nombre": "Piernas", "id": 2, "descripcion": "Lorem Ipsum Dolor Sit Amet.","url":"https://st3.depositphotos.com/6179956/18544/i/450/depositphotos_185444268-stock-photo-sport-fitness-woman-young-healthy.jpg"},
+    {"nombre": "Yoga", "id": 3, "descripcion": "Lorem Ipsum Dolor Sit Amet.","url":"https://image.freepik.com/foto-gratis/mujer-morena-atractiva-haciendo-ejercicios-yoga-bikini-sobre-fondo-blanco_3579-3294.jpg"},
+    {"nombre": "Abdomen", "id": 4, "descripcion": "Lorem Ipsum Dolor Sit Amet.","url":"https://st2.depositphotos.com/1017228/7677/i/600/depositphotos_76773161-stock-photo-fitness-man-doing-abdominal-exercises.jpg"}
+  ],
+  "routine": [
+    {"nombre": "Rutina de Brazos", "id": 1},
+    {"nombre": "Tabatta de Piernas", "id": 2}
+  ],
+  "ejercicio": [
+    {"nombre": "Sentadillas", "id": 1, "routineId": 2, "duration": 20},
+    {"nombre": "Levantamiento de Pesas", "id": 1, "routineId": 1, "duration": 30},
+    {"nombre": "Estiramiento", "id": 3, "routineId": 2, "duration": 25},
+    {"nombre": "Salto de Cuerda", "id": 4, "routineId": 1, "duration": 20},
+    {"nombre": "Flexiones de Pecho", "id": 5, "routineId": 1, "duration": 10}
+  ]
+
+}
