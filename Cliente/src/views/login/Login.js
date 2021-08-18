@@ -1,6 +1,7 @@
 import React,{useState, useEffect,useContext} from 'react';
 import { Row, Col, Input, Button } from 'antd';
 import {Link} from 'react-router-dom'
+import GoogleLogin from 'react-google-login';
 import './Login.css'
 import AuthContext from '../../context/autenticacion/authContext'
 import Error from '../register/Error.js'
@@ -52,6 +53,17 @@ const Login = (props) => {
       login({email,password})
 
 }
+const responseGoogleSuccess = (response) => {
+  const obj = response.profileObj;
+  let toSend ={
+    email:obj.email,
+    password:response.tokenObj.login_hint
+  }
+  login(toSend);
+}
+const responseGoogleFailure = (response)=>{
+  console.log(response.error);
+}
 
   return (
     <div>
@@ -59,11 +71,17 @@ const Login = (props) => {
         <Col span={12} className='left login_col'> 
         <img src={logo} alt="gym" className='image'/>
         </Col>
-
-        <Col span={12} >
-          
+        <Col span={12} >     
          <form className='login_col login_pre'>
          <p className='label'>Iniciar Sesion</p>
+         <GoogleLogin
+            clientId="92066997163-nk8aakcfc2tcapu5fr5d6ru90tqc4861.apps.googleusercontent.com"
+            buttonText="Iniciar Sesion Con Google"
+            onSuccess={responseGoogleSuccess}
+            onFailure={responseGoogleFailure}
+            cookiePolicy={'single_host_origin'}
+          />
+          <br />
             <Input placeholder='Email' type='email' name='email' value={email} onChange={handleChange}></Input>
             <br /> 
             <Input placeholder='Password' type='password' name='password' value={password} onChange={handleChange}></Input>
@@ -72,6 +90,7 @@ const Login = (props) => {
             <Button className='button' type='primary' onClick={onSubmit}>Login</Button>
               <br /> <br />
             <Link to={'/register'} className='link'>¿No tienes una cuenta? , Regístrate</Link>
+            <Link to={'/recoverpassword'} className='link'>¿Olvidaste tu contraseña? , Recuperala</Link>
          </form>
 
         </Col>

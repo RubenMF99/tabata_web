@@ -9,15 +9,16 @@ conectarDB();
 app.use(cors());
 app.use(express.json({ extends: true }));
 
-const PORT = process.env.PORT || 4000;
+const port = process.env.PORT || 4000;
 
 app.use("/api/user", require("./routes/user"));
 app.use("/api/auth", require("./routes/auth"));
 app.use("/api/routine", require("./routes/routine"));
 app.use("/api/exercise", require("./routes/exercise"));
+app.use("/api/recover", require("./routes/recover"));
 
-app.listen(PORT, () => {
-  console.log(`El servidor esta funcionando en el puerto ${PORT}`);
+app.listen(port,'0.0.0.0', () => {
+  console.log(`El servidor esta funcionando en el puerto ${port}`);
 });
 
 console.log("desde index");

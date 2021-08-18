@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Row, Col, Input, Button } from "antd";
 import { Link } from "react-router-dom";
+import GoogleLogin from 'react-google-login';
 import "../login/Login.css";
 import gym2 from "../../assets/images/Logo.png";
 import AuthContext from "../../context/autenticacion/authContext";
@@ -9,7 +10,6 @@ import Error from "./Error";
 const Register = (props) => {
   const authContext = useContext(AuthContext);
   const { autenticado, registerUser } = authContext;
-
   useEffect(() => {
     if (autenticado) {
       props.history.push("/home");
@@ -21,6 +21,7 @@ const Register = (props) => {
   const [user, setUser] = useState({
     name: "",
     email: "",
+    Peso:"",
     password: "",
     confirm: "",
     sexo: "M",
@@ -28,7 +29,7 @@ const Register = (props) => {
 
   const [alerta, setAlerta] = useState("");
 
-  const { name, email, password, confirm, sexo } = user;
+  const { name, email,Peso, password, confirm, sexo } = user;
 
   const handleChange = (e) => {
     setUser({
@@ -64,15 +65,38 @@ const Register = (props) => {
       name,
       email,
       sexo,
+      Peso,
       password,
     });
   };
+  const responseGoogleSuccess = (response) => {
+    const obj = response.profileObj;
+    let toSend ={
+      name: obj.name,
+      email:obj.email,
+      sexo:"M",
+      password:response.tokenObj.login_hint,
+    };
+    registerUser(toSend);
+  }
+  const responseGoogleFailure = (response)=>{
+    console.log(response.error);
+  }
+
   return (
     <div>
       <Row>
         <Col span={12}>
           <form className="login_col login_pre">
             <p className="label">Registrarse</p>
+            <GoogleLogin
+            clientId="92066997163-nk8aakcfc2tcapu5fr5d6ru90tqc4861.apps.googleusercontent.com"
+            buttonText="Registrarse con Google"
+            onSuccess={responseGoogleSuccess}
+            onFailure={responseGoogleFailure }
+            cookiePolicy={'single_host_origin'}
+          />
+          <br/>
             <Input
               placeholder="nombre"
               type="text"
@@ -80,7 +104,8 @@ const Register = (props) => {
               value={name}
               onChange={handleChange}
             ></Input>
-            <br />
+            <br/>
+             
             <Input
               placeholder="Correo"
               type="email"
@@ -88,7 +113,7 @@ const Register = (props) => {
               value={email}
               onChange={handleChange}
             ></Input>
-            <br />
+            <br/>
             <Input
               placeholder="Contraseña"
               type="password"

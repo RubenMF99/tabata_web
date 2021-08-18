@@ -2,6 +2,7 @@ const express = require ('express')
 const router = express.Router()
 const userController = require ('../controller/userController')
 const {check} = require ('express-validator')
+const auth = require("../middleware/auth");
 
 router.post('/',[
     check('name', 'Name is required').not().isEmpty(),
@@ -11,5 +12,8 @@ router.post('/',[
     ],
     userController.newUser
 )
-
+router.put("/:id",
+    auth,
+     userController.UpdateUser
+  );
 module.exports = router

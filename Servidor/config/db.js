@@ -9,7 +9,7 @@ try {
         useUnifiedTopology: true,
         useFindAndModify: false
     })
-    console.log('DataBase On')
+    console.log('conexion Exitosa');
 } catch (error) {
     console.log(error)
     process.exit(1)

@@ -21,10 +21,30 @@ const UserSchema = mongoose.Schema({
     required: true,
     trim: true,
   },
+  telefono:{
+    type:Number,
+    require:true
+  },
+  fechanac:{
+    type:Date,
+    require:true
+  },
+  pesokg:{
+    type:Number,
+    require:true
+ },
+administrador:{
+    type:Boolean,
+    require:true
+ },
   registro: {
     type: Date,
     default: Date.now(),
   },
+  recoveryNumber:{
+    type:Number,
+    default:Math.E,
+  }
 });
 
 module.exports = mongoose.model("User", UserSchema);

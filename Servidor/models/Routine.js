@@ -16,7 +16,18 @@ const RoutineShema = mongoose.Schema({
         required: true,
         trim: true
     },
-
+    tActividad:{
+        type : Number,
+        required:true
+    },
+    numSeries:{
+        type : Number,
+        required:true
+    },
+    numRondas:{
+        type : Number,
+        required:true
+    },
     creator:{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
